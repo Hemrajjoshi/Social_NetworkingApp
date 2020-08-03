@@ -1,0 +1,12 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+       <div class='users'>
+           <% for(var i=0;i<usernames.length;i++){ %>
+               <a  class='btn' href='/admin/chatbot/<%=usernames[i] %>' style="width:100%"><%=usernames[i] %></a>
+               <br>
+            <% } %>
+       </div>
+       
+        <%- include('../includes/end.ejs') %>

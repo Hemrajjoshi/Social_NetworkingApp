@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/message.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <h1 class='username'><%= username %></h1>
+       <div class='content' style='overflow:scroll;height:200px;width:100%;overflow:auto'>
+           <% if (messages.length > 0) { %>
+                <% for(let message of messages){ %>
+                    <% if(message.side === 'left'){ %>
+                        <div style='border:2px solid powderblue;background-color: wheat;'>
+                            <span style='text-align:left;background-color: wheat;font-weight: bold;'><%= message.content %></span>
+                            <a href="/admin/delete-message/<%= username %>?messageContent=<%= message.content %>" style="float:right;"><i class="fa fa-trash"></i></a>
+                        </div>
+                            <% } else { %>
+                            <div style='background-color: yellowgreen;border:2px solid powderblue'>
+                                <span style='font-weight: bold;margin-left:200px'><%= message.content %></span>  
+                                <a href="/admin/delete-message/<%= username %>?messageContent=<%= message.content %>" style="float:right;"><i class="fa fa-trash"></i></a>
+                            </div>        
+                    <% } %>
+                <% } %>
+            <% } else { %>
+                    <h4 style='text-align:left;background-color: wheat;'> No message found </h4>
+            <% } %> 
+       </div>
+       <form class='post-form' action='/admin/send-messages' method='POST'>
+        <div class="form-control">
+            <textarea name='message' row='2' style='margin-left:1px;'></textarea>
+        </div>
+         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="hidden" value="<%= username %>" name="username">
+        <button class="btn" type="submit">Send Message</button>
+       </form>
+        <%- include('../includes/end.ejs') %>

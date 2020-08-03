@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/reply.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (reply.length > 0) { %>
+                    <h2 class="title"> Comment: <%= content %></h2>
+                    <div class='content'>
+                        <h2  style='color:white;'>Replies</h2>
+                            <% for (var i =0; i <reply.length;  i++) { %>
+                            <div style='border:2px solid green;'>
+                                <h2 class='user'> By : <%=reply[i].email %></h2>
+                                <h4 class='reply' style='font-weight: bold;'> <%= reply[i].content %> </h4>
+                                <a href="/like-reply/<%= postId %>/<%= content %>/<%= reply[i].content %>" class='btn' >
+                                    <% if(reply[i].totalLikes>0) { %>
+                                        <span><%=reply[i].totalLikes %></span>
+                                    <% } %>Like</a>
+                                <% if(isDeletable[i]){ %>
+                                 <a href="/delete-reply/<%= postId %>/<%= content %>/<%= reply[i].content %>" class='btn' >Delete Reply</a>
+                                <% } %>
+                            </div>
+                         <br>      
+                        <% } %>
+                </div>
+                  <% } else { %>
+                <h1>No Reply Found!</h1>
+            <% } %>
+            <br>
+           <form class="post-form" action="/reply/add-reply" method="POST">
+            <div class="form-control" >
+                    <textarea  name='reply'  row='2'></textarea>
+                </div>    
+                 <input type="hidden" name="_csrf" value="<%= csrfToken %>"> 
+                <input type="hidden" value="<%= postId %>" name="postId">
+                <input type="hidden" value="<%= content%>" name="content">
+                <button class="btn" type="submit"  >Post Reply</button> 
+            </form>
+        </main>
+    </body>
+
+    </html>
+

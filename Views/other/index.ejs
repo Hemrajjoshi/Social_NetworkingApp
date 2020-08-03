@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (posts.length > 0) { %>
+            <div class="grid">
+                <% for (let post of posts) { %>
+                    <article class="card post-item">
+                        <header class="card__header">
+                            <h1 class="post__title"><%= post.title %></h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="/<%= post.imageUrl %>"
+                                alt="<%= post.title %>">
+                        </div>
+                        <div class="card__content">
+                            <p class="post__description"><%= post.description %></p>
+                        </div>
+                        <div class="card__actions">
+                            <a href="/like/<%= post._id %>" class="btn"> <% if (post.like.totalLikes > 0) { %>
+                                <span ><%= post.like.totalLikes %></span>
+                                <% }%> Like</a>
+                            <a href="/comment/<%= post._id %>" class="btn"><% if (post.comment.items.length > 0) { %>
+                                <span ><%= post.comment.items.length %></span>
+                                <% }%> Comments</a>
+                            <br><br>
+                            <a href="/posts/<%= post._id %>" class="btn">Details</a>
+                            <a href="/download/<%= post._id %>" class="btn">Download</a>
+
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+            <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
+        <% } else { %>
+            <h1>No Posts Found!</h1>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>

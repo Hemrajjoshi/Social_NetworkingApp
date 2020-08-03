@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/follower.css">
+    </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>  
+            <% if (users.length >0) { %>
+                <div class='content'>
+                    <h1 style='color:lime;'> Blocked Users</h1>
+                    <div style='background-color: lime;'>
+                        <% for(let user of users) { %>
+                            <h2 style='color:white;'><%= user.email %></h2>
+                            <a href="/unblock/<%=profileId%>/<%=user.userId %>/<%=user.email %>" class="btn">UnBlock</a>  
+                        <% } %> 
+                    </div>
+                </div>
+            <% } else { %>
+                <h1>No Blocked User </h1>  
+            <% }  %> 
+        </main>
+    </body>
+    </html>

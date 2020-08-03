@@ -1,0 +1,96 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+
+            <% if (isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/' ? 'active' : '' %>" href="/posts">All Posts</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/admin/add-post' ? 'active' : '' %>" href="/admin/add-post">Add Post
+                    </a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/admin/posts' ? 'active' : '' %>" href="/admin/posts">My Posts
+                    </a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/admin/profile' ? 'active' : '' %>" href="/profile">Profile
+                    </a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/admin/chatbot' ? 'active' : '' %>" href="/admin/chatbot">ChatBot
+                    </a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/notifications' ? 'active' : '' %>" href="/admin/notifications">Notifications
+                    </a>
+                </li> 
+            <% } %>
+        </ul>
+        <ul class="main-header__item-list">
+            <% if (!isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+                </li>
+            <% } else { %>
+                <li class="main-header__item">
+                    <form action="/logout" method="POST">
+                       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        <% if (isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/posts">All Posts</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/admin/add-post' ? 'active' : '' %>" href="/admin/add-post">Add Post
+                </a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/admin/posts' ? 'active' : '' %>" href="/admin/posts">My Posts
+                </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/profile' ? 'active' : '' %>" href="/profile">Profile
+                </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/chatbot' ? 'active' : '' %>" href="/admin/chatbot">ChatBot
+                </a>
+            </li>    <li class="main-header__item">
+                <a class="<%= path === '/notifications' ? 'active' : '' %>" href="/admin/notifications">Notifications
+                </a>
+            </li>
+
+        <% } %>
+        <% if (!isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+            </li>
+        <% } else { %>
+            <li class="mobile-nav__item">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        <% } %>
+    </ul>
+</nav>

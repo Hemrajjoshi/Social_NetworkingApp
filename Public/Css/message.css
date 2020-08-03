@@ -1,0 +1,11 @@
+.username{
+    color:green;
+    border: 1px groove yellowgreen;
+}
+.content{
+    color:black;
+    background-color: white;
+    border:2px groove powderblue;
+    max-height:250px;
+
+}

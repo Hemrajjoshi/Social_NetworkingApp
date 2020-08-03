@@ -1,0 +1,15 @@
+.title{
+    color:green;
+}
+.user{
+    color:black;
+    background-color: white;
+}
+.content{
+    border:2px solid lightseagreen;
+}
+.cmnt{
+    color:black;
+    background-color: white;
+    border:1px solid white;
+}

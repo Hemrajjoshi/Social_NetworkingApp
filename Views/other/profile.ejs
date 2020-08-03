@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/profile.css">
+    </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (hasProfile) { %>
+                <div class='content' style='float:center;'>
+                    <h1 class="user"><%= Title %></h1>
+                    <div class="card__image">
+                        <img src="/<%= profile.imageUrl %>"
+                            alt="<%= profile.user %>">
+                    </div>
+                    <h6 class='bio' >  <%=profile.bio%></h6>
+                    <h2  style='color:lightseagreen;'>Education:</h2>
+                    <div class='education' style='margin:0px;padding:0px;padding-left:5px;'>
+                        <h2 class='college'>College: <%=profile.education.college%></h2>
+                        <h2 class='degree'>Degree: <%=profile.education.degree%><h2>
+                    </div>
+                    <h2 style='color:lightseagreen;padding-bottom:0px;padding-left:5px;'>Location:</h2>
+                    <p class='location'><%=profile.location%> </p>      
+                    <a href="/follower/<%= profile._id %>" class="btn">Follower</a> 
+                    <a href="/following/<%= profile._id %>" class="btn">Following</a> 
+                    <a href="/blocked-user/<%= profile._id %>" class="btn">Blocked Users</a> 
+                    <a href="/edit-profile/<%= profile._id %>?edit=true" class="btn">Edit Profile</a>  
+                </div> 
+            <% } else { %>
+                <h1>Profile has not been set yet</h1>
+                <a href="/add-profile" class="btn">Add Profile</a>   
+            <% }  %>  
+        </main>
+    </body>
+
+    </html>
+

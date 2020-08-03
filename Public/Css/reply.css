@@ -1,0 +1,18 @@
+.title{
+ color:white;
+ background-color: yellowgreen;
+ border:2px solid powderblue;
+}
+.content{
+    background-color: powderblue;
+    border:1px solid yellowgreen;
+}
+.user{
+    color:green;
+
+}
+.reply{
+    
+    margin-left:10px;
+    /*color:blue;*/
+}

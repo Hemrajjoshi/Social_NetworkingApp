@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/following.css">
+    </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>  
+            <% if (followings.length >0) { %>
+                <div class='content'>
+                    <h1 style='color:lime;'> Following</h1>
+                    <div style='background-color:lime;'>
+                    <% for(let following of followings) { %>
+                        <h2 style='color:white;'><%= following.email %></h2>
+                        <a href="/unfollow/<%=profileId%>/<%=following.userId %>/<%=following.email%>" class="btn">Unfollow</a>  
+                     <% } %> 
+                    </div>
+                </div>
+            <% } else { %> 
+                <h1>No Followings</h1>  
+            <% }  %>
+            <% if (suggestiones) { %> 
+                <div class='suggestiones'>
+                    <h1 style="color:white;">Suggestion</h1>
+                    <% for(var i=0;i<suggestiones.length;i++) { %>
+                        <div class='suggestion' style='background-color: green;'>
+                            <% if(!suggestiones[i].isFollowed && !suggestiones[i].isBlocked){ %>
+                                <h2 style='color:blue;'><%= suggestiones[i].email %></h2>
+                                <a href="/follow/<%=profileId%>/<%=suggestiones[i].userId%>/<%=suggestiones[i].email%>" class="btn">Follow</a>
+                                <a href="/block/<%=profileId%>/<%=suggestiones[i].userId%>/<%=suggestiones[i].email%>" class="btn">Block</a>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>  
+            <% } %>
+        </main>
+    </body>
+    </html>

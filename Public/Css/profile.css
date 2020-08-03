@@ -1,0 +1,35 @@
+.content{
+border:2px solid powderblue;
+}
+.user{
+    color:green;
+    text-align:center;
+}
+.bio{
+    color:blue;
+    font-weight: 200;
+    text-align:center;
+}
+.education{
+    border:1px groove greenyellow;
+}
+.college{
+    
+    width:100%;
+    color:lightseagreen;
+    padding-left:10px;
+}
+.degree{
+    
+    width:100%;
+    color:lightseagreen;
+    padding-left:10px;
+}
+.location{
+    width:100%;
+    color:orange;
+    border:1px solid yellowgreen;
+    margin:0px;padding:0px 1px;
+    padding-left:10px;
+    margin-bottom: 5px;
+}

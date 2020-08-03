@@ -1,0 +1,65 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <form class="post-form" action="/<% if (editing) { %>edit-profile<% } else { %>add-profile<% } %>" method="POST" enctype="multipart/form-data">
+           <input type='hidden' name='user' value='<%= user%>'>
+            <div class="form-control">
+                <label for="bio">Bio</label>
+                <input 
+                class="<%= validationErrors.find(e => e.param === 'bio') ? 'invalid' : '' %>"
+                    type="text" 
+                    name="bio" 
+                    id="bio" 
+                    value="<% if (editing || hasError ) { %><%= profile.bio %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="location">Location</label>
+                <input 
+                class="<%= validationErrors.find(e => e.param === 'location') ? 'invalid' : '' %>"
+                    type="text" 
+                    name="location" 
+                    id="location" 
+                    value="<% if (editing || hasError) { %><%= profile.location %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="image">Image</label>
+                <input 
+                    type="file" 
+                    name="image" 
+                    id="image" >
+            </div>
+            <div class="form-control">
+                <label for="college">College</label>
+                <input 
+                class="<%= validationErrors.find(e => e.param === 'college') ? 'invalid' : '' %>"
+                    type="text" 
+                    name="college" 
+                    id="college" 
+                    value="<% if (editing || hasError) { %><%= profile.education.college %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="degree">Degree</label>
+                <input 
+                class="<%= validationErrors.find(e => e.param === 'degree') ? 'invalid' : '' %>"
+                    type="text" 
+                    name="degree" 
+                    id="degree" 
+                    value="<% if (editing || hasError) { %><%= profile.education.degree %><% } %>">
+            </div>
+            <% if (editing) { %>
+                <input type="hidden" value="<%= profile._id %>" name="profileId">
+            <% } %>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit"><% if (editing) { %>Update Profile<% } else { %>Add Profile<% } %></button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

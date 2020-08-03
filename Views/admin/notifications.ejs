@@ -1,0 +1,21 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+              <% if(haveNewNotifications){ %>
+                <h1>New Notifications</h1> <hr />
+                <% for(let i=0;i<notifications.length;i++){ %>
+                  <div style='border:2px solid #adff2f;color:lightseagreen; '>
+                    <span style='font-weight:bold;'> <%= notifications[i] %></span>
+                    <a class='btn' href="/admin/notification/clear/<%= notifications[i] %>" >Clear</a>
+                  </div>
+                 <% } %>
+              <% }  else{ %>
+                <h1>No New Notifications found</h1>
+              <% } %>
+</main>
+</body>
+
+</html>
