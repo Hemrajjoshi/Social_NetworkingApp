@@ -13,7 +13,7 @@ const otherController = require('./controllers/other');
 const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 const app = express();
-const MONGODB_URI='mongodb+srv://hemu:LSX00MFU5H0nI5kn@cluster0-bpalz.mongodb.net/social-network';
+const MONGODB_URI='mongodb+srv://username:password@cluster0-bpalz.mongodb.net/social-network';
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
